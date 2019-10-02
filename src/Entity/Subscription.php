@@ -24,11 +24,6 @@ final class Subscription extends \Softr\Asaas\Entity\AbstractEntity
     public $value;
 
     /**
-     * @var float
-     */
-    public $grossValue;
-
-    /**
      * @var string
      */
     public $nextDueDate;
@@ -59,99 +54,36 @@ final class Subscription extends \Softr\Asaas\Entity\AbstractEntity
     public $payments = [];
 
     /**
-     * @var string
+     * @var array
+     * [holderName, number, expiryMonth, expiryYear, ccv]
      */
-    public $creditCardHolderName;
+    public $creditCard;
 
     /**
-     * @var string
+     * @var array
+     * [name, email, cpfCnpj, postalCode,
+     *  addressNumber, addressComplement,
+     *  phone, mobilePhone]
      */
-    public $creditCardNumber;
+    public $creditCardHolderInfo;
 
     /**
-     * @var string
+     * @var array
+     * [value, dueDateLimitDays, type (FIXED, PERCENTAGE)]
      */
-    public $creditCardExpiryMonth;
+    public $discount;
 
     /**
-     * @var string
+     * @var array
+     * [value (percentual ao mes)]
      */
-    public $creditCardExpiryYear;
+    public $interest;
 
     /**
-     * @var string
+     * @var array
+     * [value (percentual)]
      */
-    public $creditCardCcv;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderFullName;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderEmail;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderCpfCnpj;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderAddress;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderAddressNumber;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderAddressComplement;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderProvince;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderCity;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderUf;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderPostalCode;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderPhone;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderPhoneDDD;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderMobilePhone;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderMobilePhoneDDD;
+    public $fine;
 
     /**
      * @var int

@@ -19,14 +19,9 @@ final class Customer extends \Softr\Asaas\Entity\AbstractEntity
     public $name;
 
     /**
-     * @var string
-     */
+     * @var strin
+    g     */
     public $email;
-
-    /**
-     * @var string
-     */
-    public $company;
 
     /**
      * @var string
@@ -57,11 +52,6 @@ final class Customer extends \Softr\Asaas\Entity\AbstractEntity
      * @var string
      */
     public $province;
-
-    /**
-     * @var bool
-     */
-    public $foreignCustomer;
 
     /**
      * @var bool

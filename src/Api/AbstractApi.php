@@ -16,18 +16,11 @@ abstract class AbstractApi
      *
      * @var string
      */
-    const ENDPOINT_PRODUCAO = 'https://www.asaas.com/api/v2';
-
-    /**
-     * Endpoint Homologação
-     *
-     * @var string
-     */
-    const ENDPOINT_HOMOLOGACAO = 'http://homolog.asaas.com/api/v2';
+    const ENDPOINT_PRODUCAO = 'https://www.asaas.com/api/v3';
 
     /**
      * Endpoint Sandbox
-     * 
+     *
      * @var string
      */
     const ENDPOINT_SANDBOX = 'https://sandbox.asaas.com/api/v3';
@@ -64,9 +57,6 @@ abstract class AbstractApi
         switch ($ambiente) {
             case 'sandbox':
                 $this->endpoint = static::ENDPOINT_SANDBOX;
-                break;
-            case 'homologacao':
-                $this->endpoint = static::ENDPOINT_HOMOLOGACAO;
                 break;
             default:
                 $this->endpoint = static::ENDPOINT_PRODUCAO;

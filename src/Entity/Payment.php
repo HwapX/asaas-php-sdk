@@ -24,7 +24,7 @@ final class Payment extends \Softr\Asaas\Entity\AbstractEntity
     public $subscription;
 
     /**
-     * @var string
+     * @var string (BOLETO|CREDIT_CARD|UNDEFINED)
      */
     public $billingType;
 
@@ -49,11 +49,6 @@ final class Payment extends \Softr\Asaas\Entity\AbstractEntity
     public $interestValue;
 
     /**
-     * @var float
-     */
-    public $grossValue;
-
-    /**
      * @var string
      */
     public $dueDate;
@@ -62,11 +57,6 @@ final class Payment extends \Softr\Asaas\Entity\AbstractEntity
      * @var string
      */
     public $status;
-
-    /**
-     * @var string
-     */
-    public $nossoNumero;
 
     /**
      * @var string
@@ -86,7 +76,7 @@ final class Payment extends \Softr\Asaas\Entity\AbstractEntity
     /**
      * @var string
      */
-    public $boletoUrl;
+    public $bankSlipUrl;
 
     /**
      * @var int
@@ -99,99 +89,47 @@ final class Payment extends \Softr\Asaas\Entity\AbstractEntity
     public $installmentValue;
 
     /**
-     * @var string
+     * @var array
+     * [holderName, number, expiryMonth, expiryYear, ccv]
      */
-    public $creditCardHolderName;
+    public $creditCard;
 
     /**
-     * @var string
+     * @var array
+     * [name, email, cpfCnpj, postalCode,
+     *  addressNumber, addressComplement,
+     *  phone, mobilePhone]
      */
-    public $creditCardNumber;
+    public $creditCardHolderInfo;
 
     /**
-     * @var string
+     * @var array
+     * [value, dueDateLimitDays, type (FIXED, PERCENTAGE)]
      */
-    public $creditCardExpiryMonth;
+    public $discount;
 
     /**
-     * @var string
+     * @var array
+     * [value (percentual ao mes)]
      */
-    public $creditCardExpiryYear;
+    public $interest;
 
     /**
-     * @var string
+     * @var array
+     * [value (percentual)]
      */
-    public $creditCardCcv;
+    public $fine;
 
     /**
-     * @var string
+     * @var array
+     * [walletId, fixedValue, percentualValue]
      */
-    public $creditCardHolderFullName;
+    public $split;
 
     /**
-     * @var string
+     * @var boolean
      */
-    public $creditCardHolderEmail;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderCpfCnpj;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderAddress;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderAddressNumber;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderAddressComplement;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderProvince;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderCity;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderUf;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderPostalCode;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderPhone;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderPhoneDDD;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderMobilePhone;
-
-    /**
-     * @var string
-     */
-    public $creditCardHolderMobilePhoneDDD;
+    public $postalService;
 
     /**
      * @param  string  $dueDate
