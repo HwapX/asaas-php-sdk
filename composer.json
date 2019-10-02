@@ -1,5 +1,5 @@
 {
-    "name"       : "softr/asaas-php-sdk",
+    "name"       : "dberri/asaas-php-sdk",
     "type"       : "library",
     "description": "Asaas.com PHP API Wrapper",
     "keywords"   : ["Asaas", "API", "Payment SaaS", "Credit Card", "Boleto"],
@@ -10,6 +10,10 @@
             "name"    : "Agência Softr",
             "email"   : "agencia.softr@gmail.com",
             "homepage": "http://www.softr.com.br"
+        },
+        {
+            "name"    : "David Berri",
+            "email"   : "dwbwill@gmail.com"
         }
     ],
     "require": {
