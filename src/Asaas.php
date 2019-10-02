@@ -1,15 +1,12 @@
 <?php
 namespace Softr\Asaas;
 
-
 // API's
 use Softr\Asaas\Adapter\AdapterInterface;
 use Softr\Asaas\Api\Customer;
-use Softr\Asaas\Api\Subscription;
-use Softr\Asaas\Api\Payment;
 use Softr\Asaas\Api\Notification;
-use Softr\Asaas\Api\City;
-
+use Softr\Asaas\Api\Payment;
+use Softr\Asaas\Api\Subscription;
 
 /**
  * Asass API Wrapper
@@ -86,12 +83,22 @@ class Asaas
     }
 
     /**
-     * Get city endpoint
+     * Get transfer endpoint
      *
-     * @return  City
+     * @return  Transfer
      */
-    public function city()
+    public function transfer()
     {
-        return new City($this->adapter, $this->ambiente);
+        return new Transfer($this->adapter, $this->ambiente);
+    }
+
+    /**
+     * Get Account endpoint
+     *
+     * @return  Account
+     */
+    public function account()
+    {
+        return new Account($this->adapter, $this->ambiente);
     }
 }
