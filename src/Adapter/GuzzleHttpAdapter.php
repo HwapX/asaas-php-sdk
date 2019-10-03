@@ -1,16 +1,14 @@
 <?php
 namespace Softr\Asaas\Adapter;
 
-
 // Asaas
-use Softr\Asaas\Exception\HttpException;
-
-// GuzzleHttp
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+
+// GuzzleHttp
 use GuzzleHttp\Exception\RequestException;
-
-
+use Softr\Asaas\Exception\HttpException;
+use Softr\Asaas\Exception\ValidationException;
 
 /**
  * Guzzle Http Adapter
@@ -41,12 +39,9 @@ class GuzzleHttpAdapter implements AdapterInterface
      */
     public function __construct($token, ClientInterface $client = null)
     {
-        if(version_compare(ClientInterface::VERSION, '6') === 1)
-        {
+        if (version_compare(ClientInterface::VERSION, '6') === 1) {
             $this->client = $client ?: new Client(['headers' => ['access_token' => $token]]);
-        }
-        else
-        {
+        } else {
             $this->client = $client ?: new Client();
 
             $this->client->setDefaultOption('headers/access_token', $token);
@@ -61,9 +56,7 @@ class GuzzleHttpAdapter implements AdapterInterface
         try
         {
             $this->response = $this->client->get($url);
-        }
-        catch(RequestException $e)
-        {
+        } catch (RequestException $e) {
             $this->response = $e->getResponse();
 
             $this->handleError();
@@ -80,9 +73,7 @@ class GuzzleHttpAdapter implements AdapterInterface
         try
         {
             $this->response = $this->client->delete($url);
-        }
-        catch(RequestException $e)
-        {
+        } catch (RequestException $e) {
             $this->response = $e->getResponse();
 
             $this->handleError();
@@ -96,15 +87,13 @@ class GuzzleHttpAdapter implements AdapterInterface
      */
     public function put($url, $content = '')
     {
-        $options = [];
+        $options         = [];
         $options['body'] = $content;
 
         try
         {
             $this->response = $this->client->put($url, $options);
-        }
-        catch(RequestException $e)
-        {
+        } catch (RequestException $e) {
             $this->response = $e->getResponse();
 
             $this->handleError();
@@ -118,15 +107,13 @@ class GuzzleHttpAdapter implements AdapterInterface
      */
     public function post($url, $content = '')
     {
-        $options = [];
+        $options                = [];
         $options['form_params'] = $content;
 
         try
         {
             $this->response = $this->client->post($url, $options);
-        }
-        catch(RequestException $e)
-        {
+        } catch (RequestException $e) {
             $this->response = $e->getResponse();
 
             $this->handleError();
@@ -140,8 +127,7 @@ class GuzzleHttpAdapter implements AdapterInterface
      */
     public function getLatestResponseHeaders()
     {
-        if(null === $this->response)
-        {
+        if (null === $this->response) {
             return;
         }
 
@@ -162,6 +148,10 @@ class GuzzleHttpAdapter implements AdapterInterface
 
         $content = json_decode($body);
 
-        throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+        if ($code === 400) {
+            throw new ValidationException(isset($content->message) ? $content->message : 'Request not processed.', $code, $content->errors);
+        } else {
+            throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+        }
     }
 }
