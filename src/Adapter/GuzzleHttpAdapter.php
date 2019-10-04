@@ -88,7 +88,7 @@ class GuzzleHttpAdapter implements AdapterInterface
     public function put($url, $content = '')
     {
         $options         = [];
-        $options['body'] = $content;
+        $options['json'] = $content;
 
         try
         {
@@ -107,8 +107,8 @@ class GuzzleHttpAdapter implements AdapterInterface
      */
     public function post($url, $content = '')
     {
-        $options                = [];
-        $options['form_params'] = $content;
+        $options         = [];
+        $options['json'] = $content;
 
         try
         {
