@@ -22,6 +22,6 @@ class Account extends \Softr\Asaas\Api\AbstractApi
 
         $account = json_decode($account);
 
-        return new TransferEntity($account);
+        return new AccountEntity($account);
     }
 }
