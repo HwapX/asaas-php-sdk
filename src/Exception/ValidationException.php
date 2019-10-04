@@ -11,7 +11,7 @@ class ValidationException extends HttpException
         parent::__construct('Os dados informados são inválidos.', $reponse_code);
 
         $this->errors = array_map(function ($error) {
-            return $error['description'];
+            return $error->description;
         }, $errors);
     }
 
