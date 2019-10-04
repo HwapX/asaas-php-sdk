@@ -3,10 +3,12 @@ namespace Softr\Asaas;
 
 // API's
 use Softr\Asaas\Adapter\AdapterInterface;
+use Softr\Asaas\Api\Account;
 use Softr\Asaas\Api\Customer;
 use Softr\Asaas\Api\Notification;
 use Softr\Asaas\Api\Payment;
 use Softr\Asaas\Api\Subscription;
+use Softr\Asaas\Api\Transfer;
 
 /**
  * Asass API Wrapper
