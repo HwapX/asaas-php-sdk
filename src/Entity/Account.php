@@ -7,7 +7,7 @@ namespace Softr\Asaas\Entity;
  *
  * @author David Berri <dwbwill@gmail.com>
  */
-final class Account extends \Softr\Asaas\Entity\AccountEntity
+final class Account extends \Softr\Asaas\Entity\AbstractEntity
 {
     /**
      * @var string

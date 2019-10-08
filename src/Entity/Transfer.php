@@ -6,7 +6,7 @@ namespace Softr\Asaas\Entity;
  *
  * @author David Berri <dwbwill@gmail.com>
  */
-final class Transfer extends \Softr\Asaas\Entity\TransferEntity
+final class Transfer extends \Softr\Asaas\Entity\AbstractEntity
 {
     /**
      * @var int
