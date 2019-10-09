@@ -25,8 +25,7 @@ class Notification extends \Softr\Asaas\Api\AbstractApi
 
         $this->extractMeta($notifications);
 
-        return array_map(function($notification)
-        {
+        return array_map(function ($notification) {
             return new NotificationEntity($notification);
         }, $notifications->data);
     }
@@ -61,9 +60,8 @@ class Notification extends \Softr\Asaas\Api\AbstractApi
 
         $this->extractMeta($notifications);
 
-        return array_map(function($notification)
-        {
-            return new NotificationEntity($notification->notification);
+        return array_map(function ($notification) {
+            return new NotificationEntity($notification);
         }, $notifications->data);
     }
 
