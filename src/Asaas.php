@@ -5,6 +5,7 @@ namespace Softr\Asaas;
 use Softr\Asaas\Adapter\AdapterInterface;
 use Softr\Asaas\Api\Account;
 use Softr\Asaas\Api\Customer;
+use Softr\Asaas\Api\Document;
 use Softr\Asaas\Api\Notification;
 use Softr\Asaas\Api\Payment;
 use Softr\Asaas\Api\Subscription;
@@ -32,16 +33,25 @@ class Asaas
     protected $ambiente;
 
     /**
+     * Versão da API
+     *
+     * @var  string
+     */
+    protected $versao;
+
+    /**
      * Constructor
      *
      * @param  AdapterInterface  $adapter   Adapter Instance
      * @param  string            $ambiente  (optional) Ambiente da API
      */
-    public function __construct(AdapterInterface $adapter, $ambiente = 'producao')
+    public function __construct(AdapterInterface $adapter, $ambiente = 'producao', $versao = 'v3')
     {
         $this->adapter = $adapter;
 
         $this->ambiente = $ambiente;
+
+        $this->versao = $versao;
     }
 
     /**
@@ -51,7 +61,7 @@ class Asaas
      */
     public function customer()
     {
-        return new Customer($this->adapter, $this->ambiente);
+        return new Customer($this->adapter, $this->ambiente, $this->versao);
     }
 
     /**
@@ -61,7 +71,7 @@ class Asaas
      */
     public function subscription()
     {
-        return new Subscription($this->adapter, $this->ambiente);
+        return new Subscription($this->adapter, $this->ambiente, $this->versao);
     }
 
     /**
@@ -71,7 +81,7 @@ class Asaas
      */
     public function payment()
     {
-        return new Payment($this->adapter, $this->ambiente);
+        return new Payment($this->adapter, $this->ambiente, $this->versao);
     }
 
     /**
@@ -81,7 +91,7 @@ class Asaas
      */
     public function notification()
     {
-        return new Notification($this->adapter, $this->ambiente);
+        return new Notification($this->adapter, $this->ambiente, $this->versao);
     }
 
     /**
@@ -91,7 +101,7 @@ class Asaas
      */
     public function transfer()
     {
-        return new Transfer($this->adapter, $this->ambiente);
+        return new Transfer($this->adapter, $this->ambiente, $this->versao);
     }
 
     /**
@@ -101,6 +111,16 @@ class Asaas
      */
     public function account()
     {
-        return new Account($this->adapter, $this->ambiente);
+        return new Account($this->adapter, $this->ambiente, $this->versao);
+    }
+
+    /**
+     * Get Document endpoint
+     *
+     * @return  Document
+     */
+    public function document()
+    {
+        return new Document($this->adapter, $this->ambiente, $this->versao);
     }
 }

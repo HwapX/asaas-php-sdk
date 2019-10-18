@@ -105,10 +105,10 @@ class GuzzleHttpAdapter implements AdapterInterface
     /**
      * {@inheritdoc}
      */
-    public function post($url, $content = '')
+    public function post($url, $content = '', $formType = 'json')
     {
-        $options         = [];
-        $options['json'] = $content;
+        $options            = [];
+        $options[$formType] = $content;
 
         try
         {

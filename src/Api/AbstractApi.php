@@ -16,14 +16,14 @@ abstract class AbstractApi
      *
      * @var string
      */
-    const ENDPOINT_PRODUCAO = 'https://www.asaas.com/api/v3';
+    const ENDPOINT_PRODUCAO = 'https://www.asaas.com/api/';
 
     /**
      * Endpoint Sandbox
      *
      * @var string
      */
-    const ENDPOINT_SANDBOX = 'https://sandbox.asaas.com/api/v3';
+    const ENDPOINT_SANDBOX = 'https://sandbox.asaas.com/api/';
 
     /**
      * Http Adapter Instance
@@ -50,16 +50,16 @@ abstract class AbstractApi
      * @param  AdapterInterface  $adapter   Adapter Instance
      * @param  string            $ambiente  (optional) Ambiente da API
      */
-    public function __construct(AdapterInterface $adapter, $ambiente = 'producao')
+    public function __construct(AdapterInterface $adapter, $ambiente = 'producao', $versao = 'v3')
     {
         $this->adapter = $adapter;
 
         switch ($ambiente) {
             case 'sandbox':
-                $this->endpoint = static::ENDPOINT_SANDBOX;
+                $this->endpoint = static::ENDPOINT_SANDBOX . $versao;
                 break;
             default:
-                $this->endpoint = static::ENDPOINT_PRODUCAO;
+                $this->endpoint = static::ENDPOINT_PRODUCAO . $versao;
         }
     }
 
