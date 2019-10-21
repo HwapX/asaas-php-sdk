@@ -5,6 +5,7 @@ namespace Softr\Asaas;
 use Softr\Asaas\Adapter\AdapterInterface;
 use Softr\Asaas\Api\Account;
 use Softr\Asaas\Api\Customer;
+use Softr\Asaas\Api\CustomerFiscalInfo;
 use Softr\Asaas\Api\Document;
 use Softr\Asaas\Api\Invoice;
 use Softr\Asaas\Api\Notification;
@@ -133,5 +134,15 @@ class Asaas
     public function invoice()
     {
         return new Invoice($this->adapter, $this->ambiente, $this->versao);
+    }
+
+    /**
+     * Get customer fiscal info endpoint
+     *
+     * @return  Invoice
+     */
+    public function customerFiscalInfo()
+    {
+        return new CustomerFiscalInfo($this->adapter, $this->ambiente, $this->versao);
     }
 }
