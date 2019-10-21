@@ -6,6 +6,7 @@ use Softr\Asaas\Adapter\AdapterInterface;
 use Softr\Asaas\Api\Account;
 use Softr\Asaas\Api\Customer;
 use Softr\Asaas\Api\Document;
+use Softr\Asaas\Api\Invoice;
 use Softr\Asaas\Api\Notification;
 use Softr\Asaas\Api\Payment;
 use Softr\Asaas\Api\Subscription;
@@ -122,5 +123,15 @@ class Asaas
     public function document()
     {
         return new Document($this->adapter, $this->ambiente, $this->versao);
+    }
+
+    /**
+     * Get Invoice endpoint
+     *
+     * @return  Invoice
+     */
+    public function invoice()
+    {
+        return new Invoice($this->adapter, $this->ambiente, $this->versao);
     }
 }
