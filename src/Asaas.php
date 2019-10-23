@@ -4,6 +4,7 @@ namespace Softr\Asaas;
 // API's
 use Softr\Asaas\Adapter\AdapterInterface;
 use Softr\Asaas\Api\Account;
+use Softr\Asaas\Api\BankAccount;
 use Softr\Asaas\Api\Customer;
 use Softr\Asaas\Api\CustomerFiscalInfo;
 use Softr\Asaas\Api\Document;
@@ -139,10 +140,20 @@ class Asaas
     /**
      * Get customer fiscal info endpoint
      *
-     * @return  Invoice
+     * @return  CustomerFiscalInfo
      */
     public function customerFiscalInfo()
     {
         return new CustomerFiscalInfo($this->adapter, $this->ambiente, $this->versao);
+    }
+
+    /**
+     * Get bank account endpoint
+     *
+     * @return  BankAccount
+     */
+    public function bankAccount()
+    {
+        return new BankAccount($this->adapter, $this->ambiente, $this->versao);
     }
 }
