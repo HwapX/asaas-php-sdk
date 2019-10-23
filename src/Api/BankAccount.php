@@ -10,6 +10,13 @@ use Softr\Asaas\Entity\BankAccount as BankAccountEntity;
  */
 class BankAccount extends \Softr\Asaas\Api\AbstractApi
 {
+    public function getAll()
+    {
+        $balance = $this->adapter->get(sprintf('%s/bankAccounts/mainAccount', $this->endpoint));
+
+        return new BankAccountEntity(json_decode($balance));
+    }
+
     /**
      * Creates new BankAccount
      *
