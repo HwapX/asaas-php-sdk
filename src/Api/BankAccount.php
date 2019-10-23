@@ -18,7 +18,7 @@ class BankAccount extends \Softr\Asaas\Api\AbstractApi
      */
     public function create(array $data)
     {
-        $bankAccount = $this->adapter->post(sprintf('%s/bancAccounts/mainAccount', $this->endpoint), $data);
+        $bankAccount = $this->adapter->post(sprintf('%s/bankAccounts/mainAccount', $this->endpoint), $data);
 
         $bankAccount = json_decode($bankAccount);
 
