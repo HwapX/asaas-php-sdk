@@ -67,11 +67,6 @@ final class BankAccount extends \Softr\Asaas\Entity\AbstractEntity
     /**
      * @var string
      */
-    public $cpfCnpj;
-
-    /**
-     * @var string
-     */
     public $ownerBirthDate;
 
     /**
