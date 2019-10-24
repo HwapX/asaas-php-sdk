@@ -11,6 +11,25 @@ use Softr\Asaas\Entity\Transfer as TransferEntity;
 class Transfer extends \Softr\Asaas\Api\AbstractApi
 {
     /**
+     * Get all transfers
+     *
+     * @param   array  $filters  (optional) Filters Array
+     * @return  array  Subscriptions Array
+     */
+    public function getAll(array $filters = [])
+    {
+        $transfers = $this->adapter->get(sprintf('%s/transfers?%s', $this->endpoint, http_build_query($filters)));
+
+        $transfers = json_decode($transfers);
+
+        $this->extractMeta($transfers);
+
+        return array_map(function ($subscription) {
+            return new TransferEntity($subscription->subscription);
+        }, $transfers->data);
+    }
+
+    /**
      * Create new transfer
      *
      * @param   array  $data  Transfer Data
