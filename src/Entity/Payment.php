@@ -56,6 +56,21 @@ final class Payment extends \Softr\Asaas\Entity\AbstractEntity
     /**
      * @var string
      */
+    public $paymentDate;
+
+    /**
+     * @var string
+     */
+    public $dateCreated;
+
+    /**
+     * @var string
+     */
+    public $creditDate;
+
+    /**
+     * @var string
+     */
     public $status;
 
     /**
