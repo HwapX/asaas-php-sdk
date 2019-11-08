@@ -43,4 +43,19 @@ class Transfer extends \Softr\Asaas\Api\AbstractApi
 
         return new TransferEntity($transfer);
     }
+
+    /**
+     * Get Transfer By Id
+     *
+     * @param   int  $id  Transfer Id
+     * @return  PaymentEntity
+     */
+    public function getById($id)
+    {
+        $transfer = $this->adapter->get(sprintf('%s/transfers/%s', $this->endpoint, $id));
+
+        $transfer = json_decode($transfer);
+
+        return new TransferEntity($transfer);
+    }
 }
