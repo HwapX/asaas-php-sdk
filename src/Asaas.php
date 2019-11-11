@@ -14,6 +14,7 @@ use Softr\Asaas\Api\Notification;
 use Softr\Asaas\Api\Payment;
 use Softr\Asaas\Api\Subscription;
 use Softr\Asaas\Api\Transfer;
+use Softr\Asaas\Api\Webhook;
 
 /**
  * Asass API Wrapper
@@ -166,5 +167,15 @@ class Asaas
     public function balance()
     {
         return new Balance($this->adapter, $this->ambiente, $this->versao);
+    }
+
+    /**
+     * Get webhook endpoint
+     *
+     * @return  Webhook
+     */
+    public function webhook()
+    {
+        return new Webhook($this->adapter, $this->ambiente, $this->versao);
     }
 }
