@@ -25,8 +25,7 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
 
         $this->extractMeta($payments);
 
-        return array_map(function($payment)
-        {
+        return array_map(function ($payment) {
             return new PaymentEntity($payment);
         }, $payments->data);
     }
@@ -61,8 +60,7 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
 
         $this->extractMeta($payments);
 
-        return array_map(function($payment)
-        {
+        return array_map(function ($payment) {
             return new PaymentEntity($payment);
         }, $payments->data);
     }
@@ -82,8 +80,7 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
 
         $this->extractMeta($payments);
 
-        return array_map(function($payment)
-        {
+        return array_map(function ($payment) {
             return new PaymentEntity($payment);
         }, $payments->data);
     }
@@ -127,5 +124,15 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
     public function delete($id)
     {
         $this->adapter->delete(sprintf('%s/payments/%s', $this->endpoint, $id));
+    }
+
+    /**
+     * Sends notification of given payment
+     *
+     * @param  string|int  $id  Payment Id
+     */
+    public function sendNotification($id)
+    {
+        $this->adapter->get(sprintf('%s/payments/%s/resendNotification', $this->endpoint, $id));
     }
 }
