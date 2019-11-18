@@ -19,7 +19,7 @@ class HttpException extends \RuntimeException implements ExceptionInterface
     public function getCode()
     {
         return $this->code;
-    };
+    }
 
     public function getMessage()
     {
