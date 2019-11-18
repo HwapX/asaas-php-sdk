@@ -24,5 +24,5 @@ class HttpException extends \RuntimeException implements ExceptionInterface
     public function getMessage()
     {
         return $this->message;
-    };
+    }
 }
