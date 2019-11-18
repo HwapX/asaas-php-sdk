@@ -123,7 +123,7 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
      */
     public function delete($id)
     {
-        $this->adapter->delete(sprintf('%s/payments/%s', $this->endpoint, $id));
+        return $this->adapter->delete(sprintf('%s/payments/%s', $this->endpoint, $id));
     }
 
     /**
@@ -133,6 +133,17 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
      */
     public function sendNotification($id)
     {
-        $this->adapter->get(sprintf('%s/payments/%s/resendNotification', $this->endpoint, $id));
+        return $this->adapter->get(sprintf('%s/payments/%s/resendNotification', $this->endpoint, $id));
+    }
+
+    /**
+     * Confirms payment outside of Asaas platform
+     *
+     * @param  string|int  $id  Payment Id
+     */
+    public function receiveInCash($id)
+    {
+        $payment = $this->adapter->post(sprintf('%s/payments/%s/receiveInCash', $this->endpoint, $id));
+        return new PaymentEntity($payment);
     }
 }
