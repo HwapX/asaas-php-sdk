@@ -6,5 +6,23 @@ namespace Softr\Asaas\Exception;
  */
 class HttpException extends \RuntimeException implements ExceptionInterface
 {
-    // Nothing here
+    public $code;
+
+    public $message;
+
+    public function __construct($message, $code)
+    {
+        $this->code    = $code;
+        $this->message = $message;
+    }
+
+    public function getCode()
+    {
+        return $this->code;
+    };
+
+    public function getMessage()
+    {
+        return $this->message;
+    };
 }
