@@ -24,8 +24,8 @@ class Transfer extends \Softr\Asaas\Api\AbstractApi
 
         $this->extractMeta($transfers);
 
-        return array_map(function ($subscription) {
-            return new TransferEntity($subscription->subscription);
+        return array_map(function ($transfer) {
+            return new TransferEntity($transfer);
         }, $transfers->data);
     }
 
