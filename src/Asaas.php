@@ -9,6 +9,7 @@ use Softr\Asaas\Api\BankAccount;
 use Softr\Asaas\Api\Customer;
 use Softr\Asaas\Api\CustomerFiscalInfo;
 use Softr\Asaas\Api\Document;
+use Softr\Asaas\Api\FinancialTransaction;
 use Softr\Asaas\Api\Invoice;
 use Softr\Asaas\Api\Notification;
 use Softr\Asaas\Api\Payment;
@@ -188,5 +189,15 @@ class Asaas
     public function wallet()
     {
         return new Wallet($this->adapter, $this->ambiente, $this->versao);
+    }
+
+    /**
+     * Get FinancialTransaction endpoint
+     *
+     * @return  Wallet
+     */
+    public function extrato()
+    {
+        return new FinancialTransaction($this->adapter, $this->ambiente, $this->versao);
     }
 }
