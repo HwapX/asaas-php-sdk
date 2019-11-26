@@ -7,7 +7,7 @@ namespace Softr\Asaas\Entity;
  *
  * @author David Berri <dwbwill@gmail.com>
  */
-final class FinanctialTransaction extends \Softr\Asaas\Entity\AbstractEntity
+final class FinancialTransaction extends \Softr\Asaas\Entity\AbstractEntity
 {
     /**
      * @var string
