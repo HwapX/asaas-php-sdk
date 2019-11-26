@@ -19,15 +19,29 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
      */
     public function getAll(array $filters = [])
     {
+        if (!isset($filters['limit'])) {
+            $filters['limit']  = static::DEFAULT_LIMIT;
+            $filters['offset'] = 0;
+        }
         $payments = $this->adapter->get(sprintf('%s/payments?%s', $this->endpoint, http_build_query($filters)));
 
         $payments = json_decode($payments);
 
-        $this->extractMeta($payments);
+        $meta = $this->extractMeta($payments);
+
+        $paymentsData = $payments->data;
+
+        while ($meta->hasMore) {
+            $filters['offset'] += $filters['offset'] > 0 ? $filters['limit'] : $filters['limit'] + 1;
+            $payments     = $this->adapter->get(sprintf('%s/payments?%s', $this->endpoint, http_build_query($filters)));
+            $payments     = json_decode($payments);
+            $meta         = $this->extractMeta($payments);
+            $paymentsData = array_merge($paymentsData, $payments->data);
+        }
 
         return array_map(function ($payment) {
             return new PaymentEntity($payment);
-        }, $payments->data);
+        }, $paymentsData);
     }
 
     /**

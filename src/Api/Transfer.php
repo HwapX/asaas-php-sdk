@@ -18,15 +18,29 @@ class Transfer extends \Softr\Asaas\Api\AbstractApi
      */
     public function getAll(array $filters = [])
     {
+        if (!isset($filters['limit'])) {
+            $filters['limit']  = static::DEFAULT_LIMIT;
+            $filters['offset'] = 0;
+        }
         $transfers = $this->adapter->get(sprintf('%s/transfers?%s', $this->endpoint, http_build_query($filters)));
 
         $transfers = json_decode($transfers);
 
-        $this->extractMeta($transfers);
+        $meta = $this->extractMeta($transfers);
+
+        $transfersData = $transfers->data;
+
+        while ($meta->hasMore) {
+            $filters['offset'] += $filters['offset'] > 0 ? $filters['limit'] : $filters['limit'] + 1;
+            $transfers     = $this->adapter->get(sprintf('%s/transfers?%s', $this->endpoint, http_build_query($filters)));
+            $transfers     = json_decode($transfers);
+            $meta          = $this->extractMeta($transfers);
+            $transfersData = array_merge($transfersData, $transfers->data);
+        }
 
         return array_map(function ($transfer) {
             return new TransferEntity($transfer);
-        }, $transfers->data);
+        }, $transfersData);
     }
 
     /**

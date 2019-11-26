@@ -26,6 +26,13 @@ abstract class AbstractApi
     const ENDPOINT_SANDBOX = 'https://sandbox.asaas.com/api/';
 
     /**
+     * Limite padrão da API Asaas v3
+     *
+     * @var integer
+     */
+    const DEFAULT_LIMIT = 100;
+
+    /**
      * Http Adapter Instance
      *
      * @var AdapterInterface
