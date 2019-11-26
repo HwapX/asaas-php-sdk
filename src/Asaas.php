@@ -14,6 +14,7 @@ use Softr\Asaas\Api\Notification;
 use Softr\Asaas\Api\Payment;
 use Softr\Asaas\Api\Subscription;
 use Softr\Asaas\Api\Transfer;
+use Softr\Asaas\Api\Wallet;
 use Softr\Asaas\Api\Webhook;
 
 /**
@@ -177,5 +178,15 @@ class Asaas
     public function webhook()
     {
         return new Webhook($this->adapter, $this->ambiente, $this->versao);
+    }
+
+    /**
+     * Get wallets endpoint
+     *
+     * @return  Wallet
+     */
+    public function wallet()
+    {
+        return new Wallet($this->adapter, $this->ambiente, $this->versao);
     }
 }
