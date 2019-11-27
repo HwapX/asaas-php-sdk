@@ -24,4 +24,19 @@ class Account extends \Softr\Asaas\Api\AbstractApi
 
         return new AccountEntity($account);
     }
+
+    /**
+     * Updates configurations in the account
+     *
+     * One use case is ["enableAutomaticTransfer" => true]
+     *
+     * @param   array  $data  Configuration data
+     * @return  AccountEntity
+     */
+    public function updateConfig(array $data = [])
+    {
+        $account = $this->adapter->post(sprintf('%s/accounts/updateConfig', $this->endpoint), $data);
+
+        return json_decode($account);
+    }
 }
