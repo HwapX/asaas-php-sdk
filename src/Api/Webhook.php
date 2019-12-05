@@ -11,10 +11,24 @@ use Softr\Asaas\Entity\Webhook as WebhookEntity;
 class Webhook extends \Softr\Asaas\Api\AbstractApi
 {
     /**
+     * Get the active Webhook
+     *
+     * @return  WebhookEntity
+     */
+    public function getAll()
+    {
+        $webhook = $this->adapter->get(sprintf('%s/webhook', $this->endpoint));
+
+        $webhook = json_decode($webhook);
+
+        return new WebhookEntity($webhook);
+    }
+
+    /**
      * Creates new Webhook
      *
      * @param   array  $data  Webhook Data
-     * @return  AccountEntity
+     * @return  WebhookEntity
      */
     public function create(array $data)
     {
