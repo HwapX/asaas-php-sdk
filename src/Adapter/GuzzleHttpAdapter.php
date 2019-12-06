@@ -7,6 +7,7 @@ use GuzzleHttp\ClientInterface;
 
 // GuzzleHttp
 use GuzzleHttp\Exception\RequestException;
+use Softr\Asaas\Exception\ForbiddenException;
 use Softr\Asaas\Exception\HttpException;
 use Softr\Asaas\Exception\ValidationException;
 
@@ -149,9 +150,11 @@ class GuzzleHttpAdapter implements AdapterInterface
         $content = json_decode($body);
 
         if ($code === 400) {
-            throw new ValidationException(isset($content->message) ? $content->message : 'Request not processed.', $code, $content->errors);
+            throw new ValidationException(isset($content->message) ? $content->message : 'Dados inválidos.', $code, $content->errors);
+        } else if ($code === 403) {
+            throw new ForbiddenException(isset($content->message) ? $content->message : 'Operação não permitida.', $code, $content->errors)
         } else {
-            throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+            throw new HttpException(isset($content->message) ? $content->message : 'Requisição não processada.', $code);
         }
     }
 }
