@@ -3,6 +3,7 @@ namespace Softr\Asaas\Api;
 
 // Entities
 use Softr\Asaas\Entity\Payment as PaymentEntity;
+use Softr\Asaas\Entity\QrCode;
 
 /**
  * Payment API Endpoint
@@ -159,5 +160,19 @@ class Payment extends \Softr\Asaas\Api\AbstractApi
     {
         $payment = $this->adapter->post(sprintf('%s/payments/%s/receiveInCash', $this->endpoint, $id));
         return new PaymentEntity($payment);
+    }
+
+    /**
+     * Gets payment QtCode
+     *
+     * @param  string|int  $id  Payment Id
+     */
+    public function pixQrCode($id)
+    {
+        $qrcode = $this->adapter->get(sprintf('%s/payments/%s/pixQrCode', $this->endpoint, $id));
+
+        $qrcode = json_decode($qrcode);
+
+        return new QrCode($qrcode);
     }
 }
